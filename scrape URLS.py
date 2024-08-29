@@ -15,10 +15,8 @@ urls = [
         ]
 
 
-with open('data.csv', 'w', newline='') as file:
+with open('urls.csv', 'w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(['Product ID', 'Product Name', 'Product Price', 'Description', 'Image URL', 'Manufacturer', 'Product URL', 'Supplier URL'])
-    product_id = 0
     for url in urls:
         response = requests.get(url)
 
@@ -28,19 +26,11 @@ with open('data.csv', 'w', newline='') as file:
             product_divs = soup.find_all('div', class_='grid-product__content')
             for div in product_divs:
                 try:
-                    product_name = div.find('div', class_='grid-product__title').text.strip()
-                    product_price = div.find('div', class_='grid-product__price').text.strip()
-                    try:
-                        product_price = div.find('span', class_='grid-product__price--original').text.strip()
-                    except:
-                        product_price = div.find('div', class_='grid-product__price').text.strip()
                     product_url = 'https://www.blackdiamondequipment.com.au/collections/equipment-climb' + div.find('a', class_='grid-product__link')['href']
-                    product_image_url = div.find('noscript').find('img')['src'][2:]
-                    writer.writerow([product_id, product_name, product_price, '', product_image_url, 'Black Diamond', product_url, 'https://www.blackdiamondequipment.com.au/collections/equipment-climb'])
-                    product_id += 1
+                    writer.writerow([product_url])
                 except:
                     pass
-    else:
-        print(f'Failed to retrieve the webpage at {url}. Status code: {response.status_code}')
+        else:
+            print(f'Failed to retrieve the webpage at {url}. Status code: {response.status_code}')
 
 
