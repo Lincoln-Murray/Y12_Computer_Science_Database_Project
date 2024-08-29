@@ -2,16 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-with open('data.csv', 'r', newline='') as file:
+with open('urls.csv', 'r', newline='') as file:
     urls = []
-    first = True
     reader = csv.reader(file, quotechar='"')
     for row in reader:
-        if not first:
-            if row[6][0] == 'h':
-                urls.append(row[6])
-        else:
-            first = False
+        urls.append(row)
 
 
 with open('prod.csv', 'w', newline='') as file:
