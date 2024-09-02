@@ -2,14 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-with open('urls.csv', 'r', newline='') as file:
+with open('Black Diamond/urls.csv', 'r', newline='') as file:
     urls = []
     reader = csv.reader(file, quotechar='"')
     for row in reader:
         urls.append(row)
 
 
-with open('prod.csv', 'w', newline='') as file:
+with open('Black Diamond/prod.csv', 'w', newline='') as file:
     writer = csv.writer(file, quotechar='"')
     writer.writerow(['Product ID', 'Product Name', 'Description'])
     product_id = 0
@@ -32,5 +32,4 @@ with open('prod.csv', 'w', newline='') as file:
                 pass
         else:
             print(f'Failed to retrieve the webpage at {url}. Status code: {response.status_code}')
-
 

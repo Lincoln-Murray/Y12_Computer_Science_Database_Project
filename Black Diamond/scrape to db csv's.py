@@ -2,18 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-with open('urls.csv', 'r', newline='') as file:
+with open('Black Diamond/urls.csv', 'r', newline='') as file:
     urls = []
     reader = csv.reader(file, quotechar='"')
     for row in reader:
         urls.append(row)
 
 
-#manufacturer = open("db csv's/manufacturer.csv", 'a')
+#manufacturer = open("../db csv's/manufacturer.csv", 'a')
 options = open("db csv's/options.csv", 'a')
 products_supplier = open("db csv's/products-supplier.csv", 'a')
 products = open("db csv's/products.csv", 'a')
-#supplier = open("db csv's/supplier.csv", 'a')
+#supplier = open("../db csv's/supplier.csv", 'a')
 #manufacturer_writer = csv.writer(manufacturer, quotechar='"')
 options_writer = csv.writer(options, quotechar='"',)
 products_supplier_writer = csv.writer(products_supplier, quotechar='"')

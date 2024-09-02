@@ -15,7 +15,7 @@ urls = [
         ]
 
 
-with open('urls.csv', 'w', newline='') as file:
+with open('Black Diamond/urls.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     for url in urls:
         response = requests.get(url)
