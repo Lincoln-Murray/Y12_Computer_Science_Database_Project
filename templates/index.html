@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Scalers</title>
+</head>
+<body>
+    {% for product in products: %}
+        <div class="product_card">
+            <h1>{{product[1]}}</h1>
+            <p class="price">{{product[3]}}</p>
+            <p>{{product[2].split(' ', 20)[0]}}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
