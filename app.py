@@ -9,7 +9,7 @@ _products = []
 
 @app.route("/")
 def index():
-    conn = sqlite3.connect('sqlite (1).db')
+    conn = sqlite3.connect('sqlite (2).db')
     curs = conn.cursor()
     with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read())
     for line in curs:
