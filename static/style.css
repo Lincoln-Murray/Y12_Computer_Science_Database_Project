@@ -1,0 +1,16 @@
+.product_card {
+    width: 20vw;
+    height: 30vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    max-height: 400px;
+    margin: inherit;
+    text-align: center;
+    font-family: arial;
+    display: inline-table;
+    overflow: hidden;
+}
+.product_card img {
+    width: 18vw;
+    max-width: 280px;
+}

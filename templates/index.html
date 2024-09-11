@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {{url_for('static', filename='style.css')}} ">
     <title>Rock Scalers</title>
 </head>
 <body>
     {% for product in products: %}
         <div class="product_card">
+            <img src="https://{{ product[5] }}">
             <h1>{{product[1]}}</h1>
             <p class="price">{{product[3]}}</p>
-            <p>{{product[2].split(' ', 20)[0]}}</p>
+            <p>
+                {% for word in product[2].split(' ')[:30]: %}
+                    {{word}}
+                {% endfor %}
+                ...
+            </p>
         </div>
     {% endfor %}
 </body>
