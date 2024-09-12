@@ -18,7 +18,7 @@
 <body style="display: flex; flex-wrap: wrap;">
     {% for product in products: %}
         <a class="product_card" href="/product{{product[0]}}">
-            <div class="product_card">
+            <div>
                 <img src="https://{{ product[5] }}">
                 <h1>{{product[1]}}</h1>
                 <p class="price">${{product[3]}}</p>
