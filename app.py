@@ -26,7 +26,7 @@ def index(sort):
             _products.append(line)
     conn.commit()
     conn.close()
-    print(render_template('index.html', products = _products))
+    #print(render_template('index.html', products = _products))
     return render_template('index.html', products = _products)
 
 @app.route("/product<int:product_id>", methods=['GET','POST'])
