@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {{url_for('static', filename='style.css')}} ">
+    <script src=" {{url_for('static', filename='main.js')}} "></script>
+    <title>Rock Scalers</title>
+</head>
+<header class="header" id="header">
+    <span id="menu_button" style="left: 4%; font-size: var(--title_size); color: var(--background_color); background-color: transparent;" class="centre" id="menu button">
+        ☰
+    </span>
+    <span class="centre", style="width: 60%; color: var(--background_color);">
+        Rock Scalers
+    </span>
+</header>
+<body style="display: flex;">
+    <div style="width: 55%;">
+        <img src="https://{{ product[5] }}" style="max-width: 100%; max-height: 95%; height: 95vh; display: inline-flex;">
+    </div>
+    <div style="width: 35%; display: block; padding: 1%;">
+        <h1>{{product[1]}}</h1>
+        <h2 class="price"> ${{product[3]}}</h2>
+        <p style="font-size: larger;">
+            {%for word in product[2].split(' ')[:-1]: %}
+                {%if word != '': %}
+                    {{ word }}
+                {%endif %}
+            {%endfor %}
+        </p>
+    </div>
+</body>
+</html>
