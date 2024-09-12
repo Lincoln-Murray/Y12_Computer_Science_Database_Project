@@ -4,21 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=" {{url_for('static', filename='style.css')}} ">
+    <script src=" {{url_for('static', filename='main.js')}} "></script>
     <title>Rock Scalers</title>
 </head>
-<body>
+<header class="header" id="header">
+    <span id="menu_button" style="left: 4%; font-size: var(--title_size); color: var(--background_color); background-color: transparent;" class="centre" id="menu button">
+        ☰
+    </span>
+    <span class="centre", style="width: 60%; color: var(--background_color);">
+        Rock Scalers
+    </span>
+</header>
+<body style="display: flex; flex-wrap: wrap;">
     {% for product in products: %}
-        <div class="product_card">
-            <img src="https://{{ product[5] }}">
-            <h1>{{product[1]}}</h1>
-            <p class="price">{{product[3]}}</p>
-            <p>
-                {% for word in product[2].split(' ')[:30]: %}
-                    {{word}}
-                {% endfor %}
-                ...
-            </p>
-        </div>
+        <a class="product_card" href="/product{{product[0]}}">
+            <div class="product_card">
+                <img src="https://{{ product[5] }}">
+                <h1>{{product[1]}}</h1>
+                <p class="price">${{product[3]}}</p>
+                <p>
+                    {% for word in product[2].split(' ')[:30]: %}
+                        {{word}}
+                    {% endfor %}
+                    ...
+                </p>
+            </div>
+        </a>
     {% endfor %}
 </body>
 </html>
