@@ -5,11 +5,11 @@ import sqlite3
 app = Flask(__name__)
 
 
-_products = []
 
 @app.route("/<string:sort>", methods=['GET','POST'])
 def index(sort):
     print(sort)
+    _products = []
     conn = sqlite3.connect('sqlite (2).db')
     curs = conn.cursor()
     if sort == 'price-min':
@@ -26,7 +26,6 @@ def index(sort):
             _products.append(line)
     conn.commit()
     conn.close()
-    #print(render_template('index.html', products = _products))
     return render_template('index.html', products = _products)
 
 @app.route("/product<int:product_id>", methods=['GET','POST'])
@@ -36,7 +35,6 @@ def product(product_id):
     with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + " where 'products'.'product_id' = " + str(product_id) + ";")
     for line in curs:
         _product = line
-    print(_products)
     conn.commit()
     conn.close()
     return render_template('product.html', product = _product)
