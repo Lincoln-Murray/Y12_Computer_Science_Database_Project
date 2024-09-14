@@ -9,11 +9,17 @@
     <title>Rock Scalers</title>
 </head>
 <header class="header" id="header">
-    <span id="menu_button" style="left: 4%; font-size: var(--title_size); color: var(--background_color); background-color: transparent;" class="centre" id="menu button">
-        ☰
-    </span>
+    <img id="search_icon" class="centre" src="{{url_for('static', filename='icons8-search-50.png')}}" style="height: 4vh; left: 3vh;">
     <span class="centre", style="width: 60%; color: var(--background_color);">
         Rock Scalers
+    </span>
+    <span class="order_div">
+        <button class="order_button">Sort</button>
+        <div class="order_types">
+            <a href="/relevance">Relevance</a>
+            <a href="/price-min">Price ASC</a>
+            <a href="/price-max">Price DESC</a>
+        </div>
     </span>
 </header>
 <body style="display: flex; flex-wrap: wrap;">
