@@ -10,7 +10,7 @@ app = Flask(__name__)
 def index(sort):
     print(sort)
     _products = []
-    conn = sqlite3.connect('sqlite (2).db')
+    conn = sqlite3.connect('Rock Scalers.db')
     curs = conn.cursor()
     if sort == 'price-min':
         with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + " order by 'productssupplier'.price ASc;")
@@ -30,7 +30,7 @@ def index(sort):
 
 @app.route("/product<int:product_id>", methods=['GET','POST'])
 def product(product_id):
-    conn = sqlite3.connect('sqlite (2).db')
+    conn = sqlite3.connect('Rock Scalers.db')
     curs = conn.cursor()
     with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + " where 'products'.'product_id' = " + str(product_id) + ";")
     for line in curs:
