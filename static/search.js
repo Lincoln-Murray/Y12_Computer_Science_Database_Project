@@ -39,6 +39,19 @@ document.addEventListener("keydown", (evt) => {
     }
 });
 
+
+menu_open = false
+
+addEventListener('scroll', (evt) => {
+    distance_top = document.documentElement.scrollTop
+    if (distance_top > window.innerHeight*0.05) {
+        search_box.style.backgroundColor = 'var(--tint_color)'
+    }
+    else {
+        search_box.style.backgroundColor = 'transparent'
+    }
+});
+
 addEventListener('DOMContentLoaded', (evt) => {
     search_box = document.getElementById('search box')
 });
