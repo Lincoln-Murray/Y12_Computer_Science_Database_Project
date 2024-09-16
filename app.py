@@ -39,13 +39,15 @@ def product(product_id):
     conn.close()
     return render_template('product.html', product = _product)
 
-@app.route("/cart", methods=['GET', 'POST'])
-def cart():
+@app.route("/cart<int:order_id>")
+def cart(order_id):
+    _products = []
     conn = sqlite3.connect('Rock Scalers.db')
     curs = conn.cursor()
-    #with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + " where 'products'.'product_id' = " + str(product_id) + ";")
-    #for line in curs:
-    #    _product = line
+    with open('sql/select_cart_products.sql') as sql_select: curs.execute(sql_select.read()[:-1].replace(str(2), str(order_id)))
+    for line in curs:
+        _products.append(line)
+        print(line)
     conn.commit()
     conn.close()
-    return render_template('product.html')
+    return render_template('cart.html', products = _products)
