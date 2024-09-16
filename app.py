@@ -16,7 +16,7 @@ def index(sort):
         conn = sqlite3.connect('Rock Scalers.db')
         curs = conn.cursor()
         if sort == 'price-min':
-            with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + " order by 'productssupplier'.price ASc;")
+            with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + " order by 'productssupplier'.price ASC;")
             for line in curs:
                 _products.append(line)
         if sort == 'price-max':
