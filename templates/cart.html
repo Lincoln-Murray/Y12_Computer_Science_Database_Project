@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {{url_for('static', filename='style.css')}} ">
+    <script src=" {{url_for('static', filename='main.js')}} "></script>
+    <title>Rock Scalers</title>
+</head>
+<header class="header" id="header">
+    <img id="search_icon" class="centre" src="{{url_for('static', filename='icons8-search-50.png')}}" style="height: 4vh; left: 3vh;">
+    <span class="centre", style="width: 60%; color: var(--background_color);">
+        Rock Scalers
+    </span>
+</header>
+<body style="display: flex;">
+    {% if products !=[]: %}
+        <ul style="margin-inline-start: 1vw; margin-block-start: 5vh;">
+            {% for product in products: %}
+            <a href="/product{{product[0]}}">
+                <li style="display: block; width: 60vw;">
+                    <img src="https://{{ product[2] }}" style="display: inline; height: 4em">
+                    <h1 style="display: inline;">{{product[1]}}</h1>
+                    <h3 style="display: inline;">{{product[3]}}</h3>
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+    {% else: %}
+        <h1 class="centre" style="font-size: 5em;">error: No products in order</h1>
+    {% endif %}
+</body>
+</html>
