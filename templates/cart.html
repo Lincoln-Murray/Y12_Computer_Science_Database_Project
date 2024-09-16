@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=" {{url_for('static', filename='style.css')}} ">
     <script src=" {{url_for('static', filename='main.js')}} "></script>
+    <link rel="icon" href="{{url_for('static', filename='icons8-rock-16.png')}}">
     <title>Rock Scalers</title>
 </head>
 <header class="header" id="header">
     <img id="search_icon" class="centre" src="{{url_for('static', filename='icons8-search-50.png')}}" style="height: 4vh; left: 3vh;">
-    <span class="centre", style="width: 60%; color: var(--background_color);">
-        Rock Scalers
-    </span>
+    <a href="/relavence">
+        <span class="centre", style="width: 60%; color: var(--background_color);">
+            Rock Scalers
+        </span>
+    </a>
+    <a href="/cart" class="centre" style="left:98%;"><img src=" {{url_for('static', filename='shopping-cart.png')}} " style="height:4vh; max-height:4vh"></a>
 </header>
 <body style="display: flex;">
     {% if products !=[]: %}
