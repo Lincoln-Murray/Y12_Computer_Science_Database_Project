@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=" {{url_for('static', filename='style.css')}} ">
     <script src=" {{url_for('static', filename='main.js')}} "></script>
+    <script src=" {{url_for('static', filename='search.js')}} "></script>
     <link rel="icon" href="{{url_for('static', filename='icons8-rock-16.png')}}">
     <title>Rock Scalers</title>
 </head>
 <header class="header" id="header">
-    <img id="search_icon" class="centre" src="{{url_for('static', filename='icons8-search-50.png')}}" style="height: 4vh; left: 3vh;">
-    <a href="/relavence">
+    <span>
+        <button onclick="search()" type="submit" style="height: 4vh; width:4vh; left: 1vh; position:relative; top:0.5vh; background:transparent; border:transparent;"><img id="search_icon" class="centre" src="{{url_for('static', filename='icons8-search-50.png')}}" style="height: 4vh; left: 1;">
+        </button>
+    </span>
+    <input class="centre" style="height: 4vh; left: 14vw; width: 20vw; text-align: left; background:transparent; border-radius: 1vh;" type="text" placeholder="Search..." id="search box">
+    <a href="/s=relavenceq=null">
         <span class="centre", style="width: 60%; color: var(--background_color);">
             Rock Scalers
         </span>
