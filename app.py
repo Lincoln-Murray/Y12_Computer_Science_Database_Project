@@ -8,32 +8,32 @@ _order_id = 1
 
 @app.route("/s=<string:sort>q=<string:query>", methods=['GET','POST'])
 def index(sort, query):
-    if request.method == 'GET':
-        _products = []
-        conn = sqlite3.connect('Rock Scalers.db')
-        curs = conn.cursor()
-        if query != 'null':
-            search = "where 'products'.'product_name' like '%" + str(query) + "%'"
-        else:
-            search=''
-        if sort == 'price-min':
-            with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + " order by 'productssupplier'.price ASC;")
-            for line in curs:
-                _products.append(line)
-        if sort == 'price-max':
-            with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + " order by 'productssupplier'.price DESC;")
-            for line in curs:
-                _products.append(line)
-        else:
-            with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + ";")
-            for line in curs:
-                _products.append(line)
-        conn.commit()
-        conn.close()
-        return render_template('index.html', products = _products)
+    _products = []
+    conn = sqlite3.connect('Rock Scalers.db')
+    curs = conn.cursor()
+    if query != 'null':
+        search = "where 'products'.'product_name' like '%" + str(query) + "%'"
     else:
-        _query = request.form['text']
-        return index(sort, _query)
+        search=''
+    if sort == 'price-min':
+        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + " order by 'productssupplier'.price ASC;")
+        for line in curs:
+            _products.append(line)
+    if sort == 'price-max':
+        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + " order by 'productssupplier'.price DESC;")
+        for line in curs:
+            _products.append(line)
+    else:
+        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + ";")
+        for line in curs:
+            _products.append(line)
+    conn.commit()
+    conn.close()
+    return render_template('index.html', products = _products)
+
+@app.route("/", methods=['GET','POST'])
+def default_index():
+    return index('relevance', 'null')
 
 @app.route("/product<int:product_id>", methods=['GET','POST'])
 def product(product_id):
