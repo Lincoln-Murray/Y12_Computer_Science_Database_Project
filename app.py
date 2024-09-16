@@ -46,7 +46,7 @@ def product(product_id):
     conn.close()
     return render_template('product.html', product = _product)
 
-@app.route("/cart<int:order_id>")
+@app.route("/cart/<int:order_id>")
 def cart(order_id):
     global _order_id
     _order_id = order_id
@@ -59,6 +59,11 @@ def cart(order_id):
     conn.commit()
     conn.close()
     return render_template('cart.html', products = _products, order_id = order_id)
+
+@app.route("/cart")
+def default_cart():
+    global _order_id
+    return cart(_order_id)
 
 @app.route("/remove_p=<int:product_id>&o=<int:order_id>", methods=['GET','POST'])
 def remove_item(product_id, order_id):
