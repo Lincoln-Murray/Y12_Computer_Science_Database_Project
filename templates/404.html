@@ -23,25 +23,6 @@
     <a href="/cart" class="centre" style="left:98%;"><img src=" {{url_for('static', filename='shopping-cart.png')}} " style="height:4vh; max-height:4vh"></a>
 </header>
 <body style="display: flex;">
-    {% if products !=[]: %}
-        <ul style="margin-inline-start: 1vw; margin-block-start: 5vh;">
-            {% for product in products: %}
-                <li style="display: block; width: 60vw;">
-                    <a href="/product{{product[0]}}">
-                        <img src="https://{{ product[2] }}" style="display: inline; height: 4em">
-                        <h1 style="display: inline;">{{product[1]}}</h1>
-                        <h3 style="display: inline;">{{product[3]}}</h3>
-                    </a>
-                    <a href="/remove_p={{product[0]}}&o={{order_id}}">
-                        <button>Remove From Cart</button>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-
-        <h1>${{'%0.2f' % summary[3]|float}}</h1>
-    {% else: %}
-        <h1 class="centre" style="font-size: 5em;">error: No products in order :(</h1>
-    {% endif %}
+    <h1 class="centre" style="max-width: 85vw; width: 85vw; top: 30vh">{{error_message}}</h1>
 </body>
 </html>

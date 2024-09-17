@@ -8,11 +8,11 @@ function search() {
                 location.href = arr.join('') + search_box.value;
             }
             else {
-                location.href = location.href.split('/')[0] + 's=relavenceq=' + search_box.value;
+                location.href = location.href.split('/')[0] + 's=relavence&q=' + search_box.value;
             }
         }
         else {
-            location.href = location.href.split('/')[0] + 's=relavenceq=' + search_box.value;
+            location.href = location.href.split('/')[0] + 's=relavence&q=' + search_box.value;
         }
     }
     else {
@@ -24,11 +24,11 @@ function search() {
                 location.href = arr.join('') + 'null';
             }
             else{
-                location.href = location.href.split('/')[0] + 's=relavenceq=null';
+                location.href = location.href.split('/')[0] + 's=relavence&q=null';
             }
         }
         else {
-            location.href = location.href.split('/')[0] + 's=relavenceq=null';
+            location.href = location.href.split('/')[0] + 's=relavence&q=null';
         }
     }
 }

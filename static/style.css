@@ -1,7 +1,6 @@
 :root {
     --highlight_color: #ff0000;
     --background_color: #0000ff;
-    --tint_color: #b90000;
     --title_size: 4vh;
 }
 
@@ -10,13 +9,11 @@
     height: 55vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 0.6vw;
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
     text-align: center;
     font-family: arial;
     display: inline-block;
     overflow: hidden;
-    position: sticky;
-    z-index: -1;
 }
 
 a {
@@ -50,7 +47,10 @@ a {
     height: 5%;
     transition: 0.7s background-color cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: transparent;
+    z-index: 1;
 }
+
+
 .order_button {
     background-color: var(--highlight_color);
     color: var(--background_color);
