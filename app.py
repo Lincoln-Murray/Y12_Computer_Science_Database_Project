@@ -16,20 +16,23 @@ def index(sort, query):
     else:
         search=''
     if sort == 'price-min':
-        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + " order by 'productssupplier'.price ASC;")
+        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read().replace('group', search + "group")[:-1] + "order by 'productssupplier'.price ASC;")
         for line in curs:
             _products.append(line)
     if sort == 'price-max':
-        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + " order by 'productssupplier'.price DESC;")
+        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read().replace('group', search + "group")[:-1] + "order by 'productssupplier'.price DESC;")
         for line in curs:
             _products.append(line)
     else:
-        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + search + ";")
+        with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read().replace('group', search + "group"))
         for line in curs:
             _products.append(line)
     conn.commit()
     conn.close()
-    return render_template('index.html', products = _products)
+    if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
+        return render_template('index_m.html', products = _products)
+    else:
+        return render_template('index.html', products = _products)
 
 @app.route("/", methods=['GET','POST'])
 def default_index():
@@ -39,12 +42,15 @@ def default_index():
 def product(product_id):
     conn = sqlite3.connect('Rock Scalers.db')
     curs = conn.cursor()
-    with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read()[:-1] + " where 'products'.'product_id' = " + str(product_id) + ";")
+    with open('sql/select_products.sql') as sql_select: curs.execute(sql_select.read().replace('group', " where 'products'.'product_id' = " + str(product_id) + " group"))
     for line in curs:
         _product = line
     conn.commit()
     conn.close()
-    return render_template('product.html', product = _product)
+    if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
+        return render_template('product_m.html', product = _product)
+    else:
+        return render_template('product.html', product = _product)
 
 @app.route("/cart/<int:order_id>")
 def cart(order_id):
@@ -58,7 +64,17 @@ def cart(order_id):
         _products.append(line)
     conn.commit()
     conn.close()
-    return render_template('cart.html', products = _products, order_id = order_id)
+    conn = sqlite3.connect('Rock Scalers.db')
+    curs = conn.cursor()
+    with open('sql/select_order_summary.sql') as sql_select: curs.execute(sql_select.read().replace(str(-2), str(order_id)))
+    for line in curs:
+        _summary = line
+    conn.commit()
+    conn.close()
+    if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
+        return render_template('cart_m.html', products = _products, order_id = order_id, summary = _summary)
+    else:
+        return render_template('cart.html', products = _products, order_id = order_id, summary = _summary)
 
 @app.route("/cart")
 def default_cart():
@@ -83,3 +99,10 @@ def add_item(product_id):
     conn.commit()
     conn.close()
     return cart(_order_id)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
+        return render_template('404_m.html', error_message=error)
+    else:
+        return render_template('404.html', error_message=error)
