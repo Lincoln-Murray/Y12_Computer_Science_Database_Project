@@ -31,20 +31,22 @@
     <a href="/cart" class="centre" style="left:98%;"><img src=" {{url_for('static', filename='shopping-cart.png')}} " style="height:4vh; max-height:4vh"></a>
 </header>
 <body style="display: flex; flex-wrap: wrap;">
-    {% for product in products: %}
-        <a class="product_card" href="/product{{product[0]}}">
-            <div>
-                <img src="https://{{ product[5] }}">
-                <h1>{{product[1]}}</h1>
-                <p class="price">${{product[3]}}</p>
-                <p>
-                    {% for word in product[2].split(' ')[:30]: %}
-                        {{word}}
-                    {% endfor %}
-                    ...
-                </p>
-            </div>
-        </a>
-    {% endfor %}
+    <div style="top: 5vh; position: absolute;">
+        {% for product in products: %}
+            <a class="product_card" href="/product{{product[0]}}">
+                <div>
+                    <img src="https://{{ product[5] }}">
+                    <h1>{{product[1]}}</h1>
+                    <p class="price">${{product[3]}}</p>
+                    <p>
+                        {% for word in product[2].split(' ')[:30]: %}
+                            {{word}}
+                        {% endfor %}
+                        ...
+                    </p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 </body>
 </html>

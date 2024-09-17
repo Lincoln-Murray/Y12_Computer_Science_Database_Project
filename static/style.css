@@ -9,11 +9,14 @@
     width: 23vw;
     height: 55vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: inherit;
+    margin: 0.6vw;
+    margin-bottom: 2vh;
     text-align: center;
     font-family: arial;
     display: inline-block;
     overflow: hidden;
+    position: sticky;
+    z-index: -1;
 }
 
 a {
