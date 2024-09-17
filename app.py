@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 _order_id = 1
 
-@app.route("/s=<string:sort>q=<string:query>", methods=['GET','POST'])
+@app.route("/s=<string:sort>&q=<string:query>", methods=['GET','POST'])
 def index(sort, query):
     _products = []
     conn = sqlite3.connect('Rock Scalers.db')
