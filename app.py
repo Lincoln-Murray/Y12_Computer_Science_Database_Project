@@ -100,7 +100,7 @@ def add_item(product_id):
     conn.close()
     return cart(_order_id)
 
-@app.errorhandler(404)
+@app.errorhandler(Exception)
 def page_not_found(error):
     if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
         return render_template('404_m.html', error_message=error)
