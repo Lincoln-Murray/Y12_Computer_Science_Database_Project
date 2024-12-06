@@ -1,3 +1,4 @@
+Will not be maintained! Will be kept in the state it was submitted in.
 <h3 style='font-size:3em; line-height:0px;'> Rock Scalers </h3>
 <h3 style='font-size:1.37em; line-height:0.5em'> For all your climbing needs </h3>
 <p style='line-height:0px;'>An SQLite Database assignment<br></p>
